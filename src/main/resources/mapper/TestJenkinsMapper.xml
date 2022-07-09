@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.testing.dao.TestJenkinsMapper">
+    <resultMap id="BaseResultMap" type="com.platform.testing.entity.TestJenkins">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="test_command" jdbcType="VARCHAR" property="testCommand"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="create_user_id" jdbcType="INTEGER" property="createUserId"/>
+        <result column="command_run_case_type" jdbcType="TINYINT" property="commandRunCaseType"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="command_run_case_suffix" jdbcType="VARCHAR" property="commandRunCaseSuffix"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM test_jenkins htj WHERE htj.create_user_id=#{params.createUserId}
+        <if test="params.name!=null and params.name !=''">
+            and htj.name=#{params.name}
+        </if>
+    </select>
+
+
+    <select id="list" resultType="TestJenkins">
+        SELECT * FROM test_jenkins htj
+        WHERE htj.create_user_id=#{params.createUserId}
+        <if test="params.name!=null and params.name !=''">
+            and htj.name=#{params.name}
+        </if>
+        ORDER BY htj.id DESC
+        limit #{pageNum},#{pageSize}
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+server:
+  port: 8087
+  servlet:
+    session:
+      timeout: 30m
+spring:
+  application:
+    name: testing-platform
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/testing-platform?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimeZone=Asia/Shanghai
+    username: root
+    password: 19940305
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.platform.testing.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.platform.testing.dao: debug
+
+rikky:
+    key1: Rikky123

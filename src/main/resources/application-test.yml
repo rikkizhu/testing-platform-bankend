@@ -1,0 +1,11 @@
+server:
+  port: 8082
+  servlet:
+    session:
+      timeout: 30m
+spring:
+  application:
+    name: testing-platform
+
+rikky:
+    key1: Rikky123

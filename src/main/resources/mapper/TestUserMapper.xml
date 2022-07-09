@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.platform.testing.dao.TestUserMapper">
+    <resultMap id="BaseResultMap" type="com.platform.testing.entity.TestUser">
+
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="auto_create_case_job_name" jdbcType="VARCHAR" property="autoCreateCaseJobName"/>
+        <result column="start_test_job_name" jdbcType="VARCHAR" property="startTestJobName"/>
+        <result column="default_jenkins_id" jdbcType="INTEGER" property="defaultJenkinsId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <!--<select id="selectTestUser" parameterType="int" resultType="BaseResultMap">-->
+    <!--SELECT * FROM test_user WHERE ID=#{id}-->
+    <!--</select>-->
+
+    <select id="getByName" resultType="TestUser">
+        SELECT * FROM test_user
+        <where>
+            <if test="userId != null">
+                id=#{id}
+            </if>
+            <if test="userName !=null and userName !=''">
+                AND user_name LIKE concat('%',#{userName},'%')
+            </if>
+        </where>
+    </select>
+</mapper>
